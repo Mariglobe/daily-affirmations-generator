@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Affirmation Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #a7e6ff 0%, #d1f7ff 100%); /* Soft blue gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 90%;
+            width: 500px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 1px solid #e0e0e0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50; /* Darker blue-gray */
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #444;
+            text-align: left;
+            margin-left: 0.25rem;
+        }
+
+        input[type="text"] {
+            padding: 0.8rem 1rem;
+            border: 2px solid #a7e6ff; /* Light blue border */
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff; /* Brighter blue on focus */
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+        }
+
+        button {
+            background: linear-gradient(180deg, #007bff 0%, #0056b3 100%); /* Blue gradient button */
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background: linear-gradient(180deg, #0056b3 0%, #004085 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+
+        .affirmation-display {
+            background-color: #f0f8ff; /* Lighter blue background for display */
+            border: 2px dashed #a7e6ff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            min-height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0056b3; /* Darker blue text */
+            margin-top: 1.5rem;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.5s ease-in-out;
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(20px);
+        }
+
+        .affirmation-display.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1.1rem;
+            }
+            .affirmation-display {
+                font-size: 1.1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Your Daily Affirmation ✨</h1>
+        <p>Enter your name below and click "Get Affirmation" to receive a positive message just for you!</p>
+
+        <div class="input-group">
+            <label for="userName">Your Name:</label>
+            <input type="text" id="userName" placeholder="e.g., Alex" aria-label="Your Name">
+        </div>
+
+        <button id="generateBtn">Get Affirmation</button>
+
+        <div id="affirmationOutput" class="affirmation-display">
+            Your affirmation will appear here!
+        </div>
+    </div>
+
+    <script>
+        // Array of positive affirmations. You can add many more!
+        const affirmations = [
+            "You are capable of amazing things.",
+            "Your potential is limitless.",
+            "You are worthy of all good things.",
+            "Every day is a new opportunity to shine.",
+            "You are strong, resilient, and brave.",
+            "Your unique qualities make you special.",
+            "You attract abundance and joy into your life.",
+            "You are growing and evolving every day.",
+            "You are surrounded by love and support.",
+            "Believe in yourself and all that you are.",
+            "You are a magnet for success and happiness.",
+            "Your positive attitude creates positive outcomes.",
+            "You are a beacon of light and positivity.",
+            "Your creativity flows effortlessly.",
+            "You are perfectly imperfect and that's beautiful.",
+            "Challenges are opportunities for growth.",
+            "You are in control of your reactions.",
+            "Today is a gift, and you are its receiver.",
+            "Your voice matters, and your ideas are valuable.",
+            "You are building the life of your dreams.",
+            "Peace and harmony reside within you.",
+            "You are open to new possibilities.",
+            "Your energy is contagious and inspiring.",
+            "You are loved, cherished, and appreciated.",
+            "Every breath you take fills you with strength.",
+            "You are a master of your own destiny.",
+            "Your intuition guides you to the right path.",
+            "You are creating a life you love.",
+            "Gratitude fills your heart and soul.",
+            "You are capable of achieving anything you set your mind to.",
+            "Your kindness makes a difference in the world.",
+            "You are resilient and can overcome any obstacle.",
+            "You are deserving of happiness and success.",
+            "You embrace change with an open heart.",
+            "Your inner strength is boundless.",
+            "You are a source of inspiration to others.",
+            "You are surrounded by positive energy.",
+            "You radiate confidence and self-love.",
+            "You are exactly where you need to be.",
+            "Your dreams are within reach.",
+            "You are a powerful creator of your reality.",
+            "You are a beautiful soul, inside and out.",
+            "You are constantly evolving and improving.",
+            "You find joy in the simple moments.",
+            "You are a force for good in the world.",
+            "You are a true blessing to those around you."
+        ];
+
+        // Get references to HTML elements
+        const userNameInput = document.getElementById('userName');
+        const generateBtn = document.getElementById('generateBtn');
+        const affirmationOutput = document.getElementById('affirmationOutput');
+
+        /**
+         * Generates a random affirmation and personalizes it with the user's name.
+         */
+        function generateAffirmation() {
+            const name = userNameInput.value.trim(); // Get name and remove extra spaces
+
+            // Choose a random affirmation from the array
+            const randomIndex = Math.floor(Math.random() * affirmations.length);
+            let selectedAffirmation = affirmations[randomIndex];
+
+            // Personalize the affirmation if a name is provided
+            if (name) {
+                selectedAffirmation = `${name}, ${selectedAffirmation}`;
+            }
+
+            // Display the affirmation with a little animation
+            affirmationOutput.classList.remove('show'); // Hide first for re-animation
+            setTimeout(() => {
+                affirmationOutput.textContent = selectedAffirmation;
+                affirmationOutput.classList.add('show');
+            }, 100); // Small delay to allow opacity transition
+        }
+
+        // Add event listener to the button
+        generateBtn.addEventListener('click', generateAffirmation);
+
+        // Optional: Generate an affirmation when the user presses Enter in the name field
+        userNameInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                generateAffirmation();
+            }
+        });
+
+        // Initial message display
+        window.onload = () => {
+             affirmationOutput.classList.add('show');
+        };
+    </script>
+</body>
+</html>
