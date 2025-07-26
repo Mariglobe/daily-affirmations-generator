@@ -64,7 +64,7 @@
             margin-left: 0.25rem;
         }
 
-        input[type="text"] {
+        input[type="text"], select {
             padding: 0.8rem 1rem;
             border: 2px solid #a7e6ff; /* Light blue border */
             border-radius: 0.75rem;
@@ -72,9 +72,18 @@
             outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+            width: 100%; /* Ensure select takes full width */
+            -webkit-appearance: none; /* Remove default dropdown arrow for custom styling */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236B7280'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem; /* Make space for the custom arrow */
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus, select:focus {
             border-color: #007bff; /* Brighter blue on focus */
             box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
         }
@@ -128,6 +137,143 @@
             transform: translateY(0);
         }
 
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem; /* Spacing between buttons */
+            margin-top: 1.5rem;
+        }
+
+        .action-button {
+            background-color: #6c757d; /* Gray button */
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-button:hover {
+            background-color: #5a6268; /* Darker gray on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-button.whatsapp { background-color: #25D366; }
+        .action-button.whatsapp:hover { background-color: #1DA851; }
+        .action-button.twitter { background-color: #1DA1F2; }
+        .action-button.twitter:hover { background-color: #0F82D3; }
+        .action-button.listen { background-color: #FF5722; } /* Orange for listen */
+        .action-button.listen:hover { background-color: #E64A19; }
+
+
+        /* Styles for the support link */
+        .support-section {
+            margin-top: 2.5rem; /* More space above the support section */
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #e0e0e0; /* A subtle separator */
+        }
+
+        .support-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .support-button {
+            display: inline-block;
+            background: linear-gradient(180deg, #28a745 0%, #218838 100%); /* Green gradient button */
+            color: white;
+            font-weight: bold;
+            padding: 0.9rem 1.8rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            text-decoration: none; /* Remove underline from link */
+            font-size: 1.1rem;
+        }
+
+        .support-button:hover {
+            background: linear-gradient(180deg, #218838 0%, #1e7e34 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 9px 18px rgba(40, 167, 69, 0.4);
+        }
+
+        .support-button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 8px rgba(40, 167, 69, 0.2);
+        }
+
+        .small-support-text {
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        .daily-reminder {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* New styles for book advertisements */
+        .book-ads-section {
+            margin-top: 2.5rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #e0e0e0;
+        }
+
+        .book-ads-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .book-link-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .book-link {
+            display: inline-block;
+            background-color: #f3f4f6; /* Light gray background for book links */
+            color: #4a5568; /* Darker text */
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            width: fit-content; /* Adjust width to content */
+        }
+
+        .book-link:hover {
+            background-color: #e2e8f0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+
         /* Responsive adjustments */
         @media (max-width: 640px) {
             h1 {
@@ -137,7 +283,7 @@
                 padding: 1.5rem;
                 gap: 1rem;
             }
-            button {
+            button, .support-button {
                 padding: 0.8rem 1.5rem;
                 font-size: 1.1rem;
             }
@@ -145,17 +291,46 @@
                 font-size: 1.1rem;
                 padding: 1rem;
             }
+            .support-text {
+                font-size: 1rem;
+            }
+            .action-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+                gap: 0.3rem;
+            }
+            .book-ads-section h3 {
+                font-size: 1.2rem;
+            }
+            .book-link {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>✨ Your Daily Affirmation ✨</h1>
-        <p>Enter your name below and click "Get Affirmation" to receive a positive message just for you!</p>
+        <p>Enter your name and select a category to receive a positive message just for you!</p>
 
         <div class="input-group">
-            <label for="userName">Your Name:</label>
+            <label for="userName">Your Name (Optional):</label>
             <input type="text" id="userName" placeholder="e.g., Alex" aria-label="Your Name">
+        </div>
+
+        <div class="input-group">
+            <label for="categorySelect">Choose a Category:</label>
+            <select id="categorySelect" aria-label="Affirmation Category">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="voiceSelect">Choose a Voice:</label>
+            <select id="voiceSelect" aria-label="Voice Selection">
+                <!-- Voice options will be populated by JavaScript -->
+            </select>
         </div>
 
         <button id="generateBtn">Get Affirmation</button>
@@ -163,101 +338,161 @@
         <div id="affirmationOutput" class="affirmation-display">
             Your affirmation will appear here!
         </div>
+
+        <div class="action-buttons">
+            <button id="copyBtn" class="action-button">📋 Copy</button>
+            <button id="listenBtn" class="action-button listen">🔊 Listen</button>
+            <button id="shareWhatsappBtn" class="action-button whatsapp">💬 WhatsApp</button>
+            <button id="shareTwitterBtn" class="action-button twitter">🐦 X</button>
+        </div>
+
+        <!-- Support Section - Show Your Love -->
+        <div class="support-section">
+            <p class="support-text">Enjoying your daily dose of positivity?</p>
+            <a href="https://selar.com/showlove/mariglobe" target="_blank" class="support-button">
+                💖 Show Your Love!
+            </a>
+            <p class="small-support-text">Your support helps keep this app running!</p>
+        </div>
+        <!-- End Support Section -->
+
+        <!-- Book Advertisements Section -->
+        <div class="book-ads-section">
+            <h3>📚 Explore More Resources!</h3>
+            <div class="book-link-container">
+                <a href="https://forms.gle/N8nuoTBdtsCk3HTp8" target="_blank" class="book-link">
+                    💰 "How People Are Making Money Online Today" (Free Ebook!)
+                </a>
+                <a href="https://selar.com/stressnomore" target="_blank" class="book-link">
+                    😌 "Stress No More" Ebook
+                </a>
+            </div>
+            <p class="small-support-text mt-4">Discover more tools for growth and well-being.</p>
+        </div>
+        <!-- End Book Advertisements Section -->
+
+        <p class="daily-reminder">Come back daily for another dose of peace and inspiration 🌸</p>
+
     </div>
 
     <script>
-        // Array of positive affirmations. You can add many more!
-        const affirmations = [
-            "You are capable of amazing things.",
-            "Your potential is limitless.",
-            "You are worthy of all good things.",
-            "Every day is a new opportunity to shine.",
-            "You are strong, resilient, and brave.",
-            "Your unique qualities make you special.",
-            "You attract abundance and joy into your life.",
-            "You are growing and evolving every day.",
-            "You are surrounded by love and support.",
-            "Believe in yourself and all that you are.",
-            "You are a magnet for success and happiness.",
-            "Your positive attitude creates positive outcomes.",
-            "You are a beacon of light and positivity.",
-            "Your creativity flows effortlessly.",
-            "You are perfectly imperfect and that's beautiful.",
-            "Challenges are opportunities for growth.",
-            "You are in control of your reactions.",
-            "Today is a gift, and you are its receiver.",
-            "Your voice matters, and your ideas are valuable.",
-            "You are building the life of your dreams.",
-            "Peace and harmony reside within you.",
-            "You are open to new possibilities.",
-            "Your energy is contagious and inspiring.",
-            "You are loved, cherished, and appreciated.",
-            "Every breath you take fills you with strength.",
-            "You are a master of your own destiny.",
-            "Your intuition guides you to the right path.",
-            "You are creating a life you love.",
-            "Gratitude fills your heart and soul.",
-            "You are capable of achieving anything you set your mind to.",
-            "Your kindness makes a difference in the world.",
-            "You are resilient and can overcome any obstacle.",
-            "You are deserving of happiness and success.",
-            "You embrace change with an open heart.",
-            "Your inner strength is boundless.",
-            "You are a source of inspiration to others.",
-            "You are surrounded by positive energy.",
-            "You radiate confidence and self-love.",
-            "You are exactly where you need to be.",
-            "Your dreams are within reach.",
-            "You are a powerful creator of your reality.",
-            "You are a beautiful soul, inside and out.",
-            "You are constantly evolving and improving.",
-            "You find joy in the simple moments.",
-            "You are a force for good in the world.",
-            "You are a true blessing to those around you."
-        ];
-
-        // Get references to HTML elements
-        const userNameInput = document.getElementById('userName');
-        const generateBtn = document.getElementById('generateBtn');
-        const affirmationOutput = document.getElementById('affirmationOutput');
-
-        /**
-         * Generates a random affirmation and personalizes it with the user's name.
-         */
-        function generateAffirmation() {
-            const name = userNameInput.value.trim(); // Get name and remove extra spaces
-
-            // Choose a random affirmation from the array
-            const randomIndex = Math.floor(Math.random() * affirmations.length);
-            let selectedAffirmation = affirmations[randomIndex];
-
-            // Personalize the affirmation if a name is provided
-            if (name) {
-                selectedAffirmation = `${name}, ${selectedAffirmation}`;
-            }
-
-            // Display the affirmation with a little animation
-            affirmationOutput.classList.remove('show'); // Hide first for re-animation
-            setTimeout(() => {
-                affirmationOutput.textContent = selectedAffirmation;
-                affirmationOutput.classList.add('show');
-            }, 100); // Small delay to allow opacity transition
-        }
-
-        // Add event listener to the button
-        generateBtn.addEventListener('click', generateAffirmation);
-
-        // Optional: Generate an affirmation when the user presses Enter in the name field
-        userNameInput.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                generateAffirmation();
-            }
-        });
-
-        // Initial message display
-        window.onload = () => {
-             affirmationOutput.classList.add('show');
-        };
-    </script>
-</body>
-</html>
+        // Categorized affirmations - EXPANDED SIGNIFICANTLY
+        const affirmationsByCategory = {
+            "All Categories": [
+                "You are capable of amazing things.",
+                "Your potential is limitless.",
+                "You are worthy of all good things.",
+                "Every day is a new opportunity to shine.",
+                "You are strong, resilient, and brave.",
+                "Your unique qualities make you special.",
+                "You attract abundance and joy into your life.",
+                "You are growing and evolving every day.",
+                "You are surrounded by love and support.",
+                "Believe in yourself and all that you are.",
+                "You are a magnet for success and happiness.",
+                "Your positive attitude creates positive outcomes.",
+                "You are a beacon of light and positivity.",
+                "Your creativity flows effortlessly.",
+                "You are perfectly imperfect and that's beautiful.",
+                "Challenges are opportunities for growth.",
+                "You are in control of your reactions.",
+                "Today is a gift, and you are its receiver.",
+                "Your voice matters, and your ideas are valuable.",
+                "You are building the life of your dreams.",
+                "Peace and harmony reside within you.",
+                "You are open to new possibilities.",
+                "Your energy is contagious and inspiring.",
+                "You are loved, cherished, and appreciated.",
+                "Every breath you take fills you with strength.",
+                "You are a master of your own destiny.",
+                "Your intuition guides you to the right path.",
+                "You are creating a life you love.",
+                "Gratitude fills your heart and soul.",
+                "You are capable of achieving anything you set your mind to.",
+                "Your kindness makes a difference in the world.",
+                "You are resilient and can overcome any obstacle.",
+                "You are deserving of happiness and success.",
+                "You embrace change with an open heart.",
+                "Your inner strength is boundless.",
+                "You are a source of inspiration to others.",
+                "You are surrounded by positive energy.",
+                "You radiate confidence and self-love.",
+                "You are exactly where you need to be.",
+                "Your dreams are within reach.",
+                "You are a powerful creator of your reality.",
+                "You are a beautiful soul, inside and out.",
+                "You are constantly evolving and improving.",
+                "You find joy in the simple moments.",
+                "You are a force for good in the world.",
+                "You are a true blessing to those around you.",
+                "I am open to receiving all the good life has to offer.",
+                "My life is a reflection of my positive thoughts.",
+                "I am living my purpose with joy and passion.",
+                "Every day is an opportunity to learn and grow.",
+                "I am filled with infinite potential.",
+                "I choose to see the good in every situation.",
+                "My spirit is free and my heart is open.",
+                "I am aligned with the flow of the universe.",
+                "I release anything that no longer serves me.",
+                "I am a magnet for positive experiences.",
+                "I trust the journey and embrace the unknown.",
+                "I am creating a life beyond my wildest dreams.",
+                "I am a powerful force for good in the world.",
+                "My life is a testament to my positive mindset.",
+                "I am always guided towards my highest good.",
+                "I attract opportunities that align with my purpose.",
+                "I am filled with endless possibilities.",
+                "I am a channel for divine inspiration.",
+                "Every challenge is a stepping stone to greatness.",
+                "I am grateful for the journey and the destination.",
+                "I am surrounded by positive influences.",
+                "I am a magnet for joy, peace, and abundance."
+            ],
+            "Confidence & Self-Worth": [
+                "I am confident and believe in myself.",
+                "My self-worth is inherent and unconditional.",
+                "I am capable of achieving anything I set my mind to.",
+                "I trust my abilities and my decisions.",
+                "I am proud of who I am and who I am becoming.",
+                "My confidence grows stronger every day.",
+                "I am worthy of respect and love.",
+                "I embrace my strengths and my unique qualities.",
+                "I am fearless in the pursuit of what sets my soul on fire.",
+                "I speak my truth with courage and conviction.",
+                "I am a powerful and valuable individual.",
+                "I am enough, exactly as I am.",
+                "I radiate self-assurance and inner peace.",
+                "My voice is important and deserves to be heard.",
+                "I step into my power with grace and ease.",
+                "I am bold and brave in all my endeavors.",
+                "I trust my instincts implicitly.",
+                "I am a unique and irreplaceable being.",
+                "My inner critic is silenced by my unwavering self-belief.",
+                "I stand tall in my authenticity.",
+                "I am confident in my own skin.",
+                "I am resilient and bounce back from setbacks.",
+                "I am my own biggest supporter.",
+                "I am worthy of success and happiness."
+            ],
+            "Calm & Peace": [
+                "I am calm and at peace with myself and the world.",
+                "My mind is clear and serene.",
+                "I release all tension and stress from my body.",
+                "I breathe in peace and breathe out worry.",
+                "I am centered and grounded in the present moment.",
+                "Peace flows through me and around me.",
+                "I choose tranquility and inner harmony.",
+                "I am safe and secure.",
+                "Every cell in my body is relaxed and at ease.",
+                "I find stillness in the midst of chaos.",
+                "I am a haven of peace.",
+                "I allow peace to guide my actions.",
+                "I release the need to control and embrace the flow.",
+                "My breath is my anchor to peace.",
+                "I am surrounded by a bubble of calm.",
+                "I let go of what I cannot change.",
+                "My inner world is a sanctuary of peace.",
+                "I am in harmony with the rhythm of life.",
+                "I choose to respond with peace, not react with fear.",
+                "I am present and mindful in every moment.",
+                "My 
